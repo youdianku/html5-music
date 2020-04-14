@@ -43,6 +43,21 @@ function bindClick() {
     $body.on('click', '.list-btn', function() {
         root.renderList.show(controlIndex);
     })
+    // 点击进度条
+    $('.progress-wrap').on('click', function(e){
+        var offsetX = e.offsetX;
+        var width = $(this).width();
+        var percent = offsetX / width;
+        jumpEvent(percent);
+    })
+}
+
+function jumpEvent(percent){
+    var jumpTime = dataList[controlIndex.index].duration * percent;
+    audioManagement.jumpToPlay(jumpTime);
+    // 重新开始进度条
+    root.progressBar.startAnimation(percent);
+    $body.find('.play-btn').addClass('pause');
 }
 
 // 拖动进度条
@@ -68,11 +83,7 @@ function bindTouch() {
         var percent = (clientX - left) / width;
         // 判断超出边界，跳转播放
         percent = percent > 1 ? 1 : (percent < 0 ? 0 : percent);
-        var jumpTime = dataList[controlIndex.index].duration * percent;
-        audioManagement.jumpToPlay(jumpTime);
-        // 重新开始进度条
-        root.progressBar.startAnimation(percent);
-        $body.find('.play-btn').addClass('pause');
+        jumpEvent(percent);
     })
 }
 
