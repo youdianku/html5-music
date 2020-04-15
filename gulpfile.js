@@ -13,37 +13,30 @@ var folder = {
     dist: 'dist/',
     docs: 'docs/'
 }
-var devMode = process.env.NODE_ENV !== 'production';
+// var devMode = process.env.NODE_ENV != 'production';
 
 gulp.task('html', function(){
-    var html = gulp.src(folder.src + 'html/*')
-                    .pipe(connect.reload())
-    if(!devMode){
-        html.pipe(htmlclean())
-    }
-    html.pipe(gulp.dest(folder.docs + 'html/'))
+    gulp.src(folder.src + 'html/*')
+        .pipe(connect.reload())
+        .pipe(htmlclean())
+        .pipe(gulp.dest(folder.docs + 'html/'))
 })
 
 gulp.task('js', function(){
-    var js = gulp.src(folder.src + 'js/*')
-                .pipe(connect.reload())
-    if(!devMode){
-        js.pipe(uglify())
-    }
-    js.pipe(gulp.dest(folder.docs + 'js/'))
+    gulp.src(folder.src + 'js/*')
+        .pipe(connect.reload())
+        .pipe(gulp.dest(folder.docs + 'js/'))
 })
 
 gulp.task('css', function(){
     var options = [
-        autoprefixer()
+        autoprefixer(),
+        cssnano()
     ]
-    var css = gulp.src(folder.src + 'css/*')
+    gulp.src(folder.src + 'css/*')
         .pipe(connect.reload())
         .pipe(less())
-    if(!devMode){
-        css.push(cssnano())
-    }
-    css.pipe(postcss(options))
+        .pipe(postcss(options))
         .pipe(gulp.dest(folder.docs + 'css/'))
 })
 
