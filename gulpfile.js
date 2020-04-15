@@ -10,7 +10,8 @@ var connect = require('gulp-connect');
 
 var folder = {
     src: 'src/',
-    dist: 'dist/'
+    dist: 'dist/',
+    docs: 'docs/'
 }
 var devMode = process.env.NODE_ENV !== 'production';
 
@@ -20,7 +21,7 @@ gulp.task('html', function(){
     if(!devMode){
         html.pipe(htmlclean())
     }
-    html.pipe(gulp.dest(folder.dist + 'html/'))
+    html.pipe(gulp.dest(folder.docs + 'html/'))
 })
 
 gulp.task('js', function(){
@@ -29,7 +30,7 @@ gulp.task('js', function(){
     if(!devMode){
         js.pipe(uglify())
     }
-    js.pipe(gulp.dest(folder.dist + 'js/'))
+    js.pipe(gulp.dest(folder.docs + 'js/'))
 })
 
 gulp.task('css', function(){
@@ -43,13 +44,13 @@ gulp.task('css', function(){
         css.push(cssnano())
     }
     css.pipe(postcss(options))
-        .pipe(gulp.dest(folder.dist + 'css/'))
+        .pipe(gulp.dest(folder.docs + 'css/'))
 })
 
 gulp.task('images', function(){
     gulp.src(folder.src + 'images/*')
         .pipe(imagemin())
-        .pipe(gulp.dest(folder.dist + 'images/'))
+        .pipe(gulp.dest(folder.docs + 'images/'))
 })
 
 gulp.task('watch',function(){
