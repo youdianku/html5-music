@@ -19,19 +19,22 @@ function bindClick() {
         root.progressBar.updateTimeAndAnimation(0);
     })
     // 上一首
-    $body.on('click', '.prev-btn', function(){
+    $('.prev-btn').click(function(){
+    // $body.on('click', '.prev-btn', function(){
         alert('prev')
         var index = controlIndex.prev();
         $body.trigger('play:change', index);
     })
     // 下一首
-    $body.on('click', '.next-btn', function(){
+    $('.next-btn').click(function(){
+    // $body.on('click', '.next-btn', function(){
         alert('next')
         var index = controlIndex.next();
         $body.trigger('play:change', index);
     })
     // 播放/暂停
-    $body.on('click', '.play-btn', function(){
+    $('.play-btn').click(function(){
+    // $body.on('click', '.play-btn', function(){
         alert('play')
         if(audioManagement.status == 'play'){
             root.progressBar.stopAnimation();
@@ -43,7 +46,7 @@ function bindClick() {
         $(this).toggleClass('pause')
     })
     // 歌单列表
-    $body.on('click', '.list-btn', function() {
+    $('.list-btn').click(function(){
         alert('list')
         root.renderList.show(controlIndex);
     })
