@@ -20,16 +20,19 @@ function bindClick() {
     })
     // 上一首
     $body.on('click', '.prev-btn', function(){
+        alert('prev')
         var index = controlIndex.prev();
         $body.trigger('play:change', index);
     })
     // 下一首
     $body.on('click', '.next-btn', function(){
+        alert('next')
         var index = controlIndex.next();
         $body.trigger('play:change', index);
     })
     // 播放/暂停
     $body.on('click', '.play-btn', function(){
+        alert('play')
         if(audioManagement.status == 'play'){
             root.progressBar.stopAnimation();
             audioManagement.pause();
@@ -41,6 +44,7 @@ function bindClick() {
     })
     // 歌单列表
     $body.on('click', '.list-btn', function() {
+        alert('list')
         root.renderList.show(controlIndex);
     })
     // 点击进度条
@@ -49,6 +53,10 @@ function bindClick() {
         var width = $(this).width();
         var percent = offsetX / width;
         jumpEvent(percent);
+    })
+    // 收藏
+    $('.like-btn').click(function(){
+        alert('Developing')
     })
 }
 
