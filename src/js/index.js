@@ -20,22 +20,16 @@ function bindClick() {
     })
     // 上一首
     $('.prev-btn').click(function(){
-    // $body.on('click', '.prev-btn', function(){
-        alert('prev')
         var index = controlIndex.prev();
         $body.trigger('play:change', index);
     })
     // 下一首
     $('.next-btn').click(function(){
-    // $body.on('click', '.next-btn', function(){
-        alert('next')
         var index = controlIndex.next();
         $body.trigger('play:change', index);
     })
     // 播放/暂停
     $('.play-btn').click(function(){
-    // $body.on('click', '.play-btn', function(){
-        alert('play')
         if(audioManagement.status == 'play'){
             root.progressBar.stopAnimation();
             audioManagement.pause();
@@ -47,7 +41,6 @@ function bindClick() {
     })
     // 歌单列表
     $('.list-btn').click(function(){
-        alert('list')
         root.renderList.show(controlIndex);
     })
     // 点击进度条
